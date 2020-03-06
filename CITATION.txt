@@ -1,0 +1,12 @@
+To reference `Plasticity` in publications, please cite the following:
+
+Aitor Ameztegui (2017) Plasticity: An R package to determine several plasticity indices. GitHub repository, https://github.com/ameztegui/Plasticity
+
+@misc{Ameztegui2017,
+  author = {Ameztegui, A.},
+  title = {Plasticity},
+  year = {2017},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/ameztegui/Plasticity}}
+}
