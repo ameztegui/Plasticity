@@ -2,7 +2,7 @@
 % Please edit documentation in R/RDPI.R
 \name{rdpi}
 \alias{rdpi}
-\title{RDPI}
+\title{rdpi}
 \usage{
 rdpi(dataframe, sp, trait, factor, verbose = T)
 }
