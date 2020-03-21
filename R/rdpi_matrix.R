@@ -1,6 +1,5 @@
 #' @title rdpi_matrix
-
-#' @description Function to compute a vector containing the relative distance plasticity index values (Valladares et al. 2006) of a given
+#' @description Function to compute a matrix with the relative distance plasticity index values (Valladares et al. 2006) of a given
 #' trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does 
 #' not belong to the same level of "factor", and returns a vector containing all the calculated rdpi values.
 #' @param data The dataframe that contains the data
@@ -10,7 +9,7 @@
 #' @return a vector containing all the calculated rdpi values for each pair of observations that do not belong to the same level of "factor"
 #' @examples
 #' data(ecophysio)
-#' compute_rdpi(ecophysio,SB, Piso)
+#' rdpi_matrix(ecophysio,SB, Piso)
 #' @export
 #' 
     rdpi_matrix <- function (data, trait, factor) {
@@ -38,3 +37,4 @@
         RDPI_temp[filter_frame == TRUE]
         
     }
+    

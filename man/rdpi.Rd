@@ -4,7 +4,7 @@
 \alias{rdpi}
 \title{rdpi}
 \usage{
-rdpi(dataframe, sp, trait, factor, verbose = T)
+rdpi(dataframe, sp, trait, factor)
 }
 \arguments{
 \item{dataframe}{The dataframe that contains the data}
@@ -16,9 +16,6 @@ The function will compare RDPI values among values of this variable. It can be s
 
 \item{factor}{the bare (unquoted) name of the column that holds the environmental factor for which we will calculate RDPI. 
 By definition, RDPI computes distances between pairs of observations that are at different levels of this factor.}
-
-\item{verbose}{defines if we want to get a data frame with all the individual RDPI values calculated.
-By default is set to `TRUE`; indicating that we will get the data frame. If set to `FALSE`, we only get a summary table and a bocplot}
 }
 \value{
 This function computes RDPI to the environmental factor for each species of the dataset(or any other identifying variable defined in `sp`)
@@ -33,9 +30,9 @@ Valladares et al, (2006) Quantitative estimation of phenotypic plasticity:
 }
 \examples{
 data(ecophysio)
-rdpi(ecophysio,sp,SB, Piso, verbose = F)
+rdpi(ecophysio,sp,SB, Piso)
 
 # if we want to store the values
 
-foo <- rdpi(ecophysio,sp,SB, Piso, verbose = T)
+foo <- rdpi(ecophysio,sp,SB, Piso)
 }

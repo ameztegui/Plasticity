@@ -11,21 +11,19 @@
 #' @param trait The bare (unquoted) name of the column that holds the trait for which to calculate RDPI. Must be numeric
 #' @param factor the bare (unquoted) name of the column that holds the environmental factor for which we will calculate RDPI. 
 #' By definition, RDPI computes distances between pairs of observations that are at different levels of this factor.
-#' @param verbose defines if we want to get a data frame with all the individual RDPI values calculated.
-#'  By default is set to `TRUE`; indicating that we will get the data frame. If set to `FALSE`, we only get a summary table and a bocplot
 #' @return This function computes RDPI to the environmental factor for each species of the dataset(or any other identifying variable defined in `sp`)
 #' Then it makes an ANOVA or t-test of the values of RDPI across species
 #' and plots the boxplot
 #' @examples
 #' data(ecophysio)
-#' rdpi(ecophysio,sp,SB, Piso, verbose = F)
+#' rdpi(ecophysio,sp,SB, Piso)
 #' 
 #' # if we want to store the values
 #' 
-#' foo <- rdpi(ecophysio,sp,SB, Piso, verbose = T)
+#' foo <- rdpi(ecophysio,sp,SB, Piso)
 #' @export
 
-rdpi <- function(dataframe, sp, trait, factor, verbose = T) {
+rdpi <- function(dataframe, sp, trait, factor) {
     
     # Load the required libraries
     
@@ -46,10 +44,10 @@ rdpi <- function(dataframe, sp, trait, factor, verbose = T) {
         # subset the data for a given species
         data_sp <- dataframe %>% filter({{sp}} == a)
         
-        RDPI_temp <- compute_rdpi(data_sp, {{trait}}, {{factor}})
+        RDPI_temp <- rdpi_matrix(data_sp, {{trait}}, {{factor}})
     
         RDPI_sp <- data.frame(sp = as.character(a),
-                              value = RDPI_temp)
+                              rdpi = RDPI_temp)
         
         RDPI <- rbind(RDPI, RDPI_sp)
      }
@@ -59,41 +57,41 @@ rdpi <- function(dataframe, sp, trait, factor, verbose = T) {
     # A table with summary statistics for each sp
     summary <- RDPI %>%
         group_by(sp) %>%
-        summarise(mean = mean(value,na.rm=T),
-                  sd = sd(value,na.rm=T),
-                  se = se(value, na.rm=T))
+        summarise(mean = mean(rdpi,na.rm=T),
+                  sd = sd(rdpi,na.rm=T),
+                  se = se(rdpi, na.rm=T))
     
     # A boxplot
     boxplot_rdpi <- ggplot(RDPI) +
-        geom_boxplot(aes(sp, value)) +
+        geom_boxplot(aes(sp, rdpi)) +
         ylab("RDPI") +
         xlab(deparse(substitute(sp)))
     
     print(boxplot_rdpi)
     
     if (nlevels(RDPI$sp) < 3) {
-        fit <- t.test(RDPI$value ~ RDPI$sp)
+        fit <- t.test(RDPI$rdpi ~ RDPI$sp)
         print(summary)
         print("t-test")
         print(fit)
         
     } else {
-        fit <- aov(RDPI$value ~ RDPI$sp)
+        fit <- aov(RDPI$rdpi ~ RDPI$sp)
         
         print("ANOVA test")
         print(summary(fit))
         Tuk <- HSD.test (fit, trt='RDPI$sp')
         Tuk$groups$sp <- as.factor(row.names(Tuk$groups))
         summary <- left_join(summary, Tuk$groups) %>%
-            select(-`RDPI$value`)
+            select(-`RDPI$rdpi`)
         print("Tukey HSD test for differences accross groups")
         print(summary)
     }
     
-    
-    if(verbose == T) {
-        return(RDPI)
-    } 
-    
+    invisible(RDPI)
+    # if(verbose == T) {
+    #     return(RDPI)
+    # } 
+    # 
 }
 
