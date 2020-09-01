@@ -4,6 +4,7 @@
 \alias{rdpi_matrix}
 \title{rdpi_matrix}
 \usage{
+rdpi_matrix(data, trait, factor)
 
 rdpi_matrix(data, trait, factor)
 }
@@ -17,15 +18,21 @@ By definition, RDPI computes distances between pairs of observations that are at
 }
 \value{
 a vector containing all the calculated rdpi values for each pair of observations that do not belong to the same level of "factor"
+
+a vector containing all the calculated rdpi values for each pair of observations that do not belong to the same level of "factor"
 }
 \description{
 Function to compute a vector containing the relative distance plasticity index values (Valladares et al. 2006) of a given
 trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does 
 not belong to the same level of "factor", and returns a vector containing all the calculated rdpi values.
 
+Function to compute a matrix with the relative distance plasticity index values (Valladares et al. 2006) of a given
+trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does 
+not belong to the same level of "factor", and returns a vector containing all the calculated rdpi values.
 }
 \examples{
-
+data(ecophysio)
+compute_rdpi(ecophysio,SB, Piso)
 data(ecophysio)
 rdpi_matrix(ecophysio,SB, Piso)
 }
