@@ -71,10 +71,13 @@ rdpi <- function(dataframe, sp, trait, factor) {
     print(boxplot_rdpi)
 
     if (nlevels(RDPI$sp) < 3) {
-        fit <- t.test(RDPI$rdpi ~ RDPI$sp)
+        fit <- try(t.test(RDPI$rdpi ~ RDPI$sp), silent = T)
         print(summary)
-        print("t-test")
-        print(fit)
+        if(class(fit)!="try-error") {
+            print("t-test")
+            print(fit) }
+        else {
+            print("To compute a t-test the grouping factor must have exactly 2 levels")}
 
     } else {
         fit <- aov(RDPI$rdpi ~ RDPI$sp)
@@ -90,9 +93,6 @@ rdpi <- function(dataframe, sp, trait, factor) {
     }
 
     invisible(RDPI)
-    # if(verbose == T) {
-    #     return(RDPI)
-    # }
-    #
+
 }
 
