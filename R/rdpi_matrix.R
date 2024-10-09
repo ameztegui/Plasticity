@@ -9,7 +9,7 @@
 #' @return a vector containing all the calculated rdpi values for each pair of observations that do not belong to the same level of "factor"
 #' @examples
 #' data(ecophysio)
-#' rdpi_matrix(ecophysio,SB, Piso)
+#' rdpi_matrix(ecophysio,SB, Stage)
 #' @export
 #'
     rdpi_matrix <- function (data, trait, factor) {

@@ -10,13 +10,13 @@
 #' @return a vector containing all the calculated rdpi values for each pair of observations that do not belong to the same level of "factor"
 #' @examples
 #' data(ecophysio)
-#' compute_rdpi(ecophysio,SB, Piso)
+#' compute_rdpi(ecophysio,SB, Stage)
 #' @export
 #'
     rdpi_matrix <- function (data, trait, factor) {
 
         # Step1: Compute pairwise Canberra distance (aka RDPI) for all individuals in the dataset
-        RDPI_temp <- as.matrix(dist(x = data |> |>  pull({{trait}}), method="canberra"))
+        RDPI_temp <- as.matrix(dist(x = data |>  pull({{trait}}), method="canberra"))
 
         # Step 2: Generate a matrix where value is "TRUE" only if observation i and observation j
         # belong to different levels of the factor

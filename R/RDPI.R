@@ -20,7 +20,7 @@
 #'
 #' # if we want to store the values
 #'
-#' foo <- rdpi(ecophysio,sp,SB, Piso)
+#' foo <- rdpi(ecophysio,Species,SB, Stage)
 #' @export
 
 rdpi <- function(dataframe, sp, trait, factor) {
