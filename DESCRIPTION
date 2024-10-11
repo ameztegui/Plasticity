@@ -1,12 +1,12 @@
 Package: Plasticity
 Type: Package
 Title: A package for computing plasticity indices
-Version: 0.2
+Version: 1.0
 Author: Aitor Ameztegui - Universitat de Lleida
 Maintainer: Aitor Ameztegui <aitor.ameztegui@udl.cat>
 Description: The Plasticity package allows to compute several plasticity indices
 	as defined in Valladares et al. (2006) at Journal of Ecology
-License: Open
+License: `use_mit_license()`
 Imports:
     agricolae,
     dplyr,
@@ -14,5 +14,5 @@ Imports:
     psych
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 StagedInstall: no

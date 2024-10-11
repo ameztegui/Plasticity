@@ -34,5 +34,5 @@ rdpi(ecophysio,sp,SB, Piso)
 
 # if we want to store the values
 
-foo <- rdpi(ecophysio,sp,SB, Piso)
+foo <- rdpi(ecophysio,Species,SB, Stage)
 }

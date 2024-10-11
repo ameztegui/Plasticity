@@ -13,7 +13,7 @@ rdpi_matrix(data, trait, factor)
 
 \item{trait}{The bare (unquoted) name of the column that holds the trait for which to calculate RDPI. Must be numeric}
 
-\item{factor}{the bare (unquoted) name of the column that holds the environmental factor for which we will calculate RDPI. 
+\item{factor}{the bare (unquoted) name of the column that holds the environmental factor for which we will calculate RDPI.
 By definition, RDPI computes distances between pairs of observations that are at different levels of this factor.}
 }
 \value{
@@ -23,16 +23,16 @@ a vector containing all the calculated rdpi values for each pair of observations
 }
 \description{
 Function to compute a vector containing the relative distance plasticity index values (Valladares et al. 2006) of a given
-trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does 
+trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does
 not belong to the same level of "factor", and returns a vector containing all the calculated rdpi values.
 
 Function to compute a matrix with the relative distance plasticity index values (Valladares et al. 2006) of a given
-trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does 
+trait (trait) for a given categorical environmental variable (factor). It calculates rdpi for each pair of observation that does
 not belong to the same level of "factor", and returns a vector containing all the calculated rdpi values.
 }
 \examples{
 data(ecophysio)
-compute_rdpi(ecophysio,SB, Piso)
+compute_rdpi(ecophysio,SB, Stage)
 data(ecophysio)
-rdpi_matrix(ecophysio,SB, Piso)
+rdpi_matrix(ecophysio,SB, Stage)
 }
